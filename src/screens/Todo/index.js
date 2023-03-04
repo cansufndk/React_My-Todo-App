@@ -6,8 +6,7 @@ const Todo = ({ todos }) => {
   console.log(todos, "Todo todos");
 
   return (
-    <div>
-      TODO
+    <div className="mb-10 w-[70%] flex flex-col items-center justiy-center">
       {todos.map((item) => (
         <TodoItem key={item.id} item={item} />
       ))}

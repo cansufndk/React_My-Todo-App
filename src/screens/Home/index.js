@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getChangeButton, getChangeTitle } from "../../Language";
+import { getChangeButton, getChangeTitle, getChangeTodo } from "../../Language";
 import { getTodoList, addTodo, langChange } from "../../redux/actions";
 import Todo from "../Todo";
 import { v4 as uuidv4 } from "uuid";
@@ -32,17 +32,29 @@ const Home = () => {
   }, [dispatch]);
 
   return (
-    <div>
-      <h3 className="text-red-500">{getChangeTitle(language)}</h3>
+    <div className=" w-[75%] relative flex justify-center items-center flex-col p-2 bg-orange-200 rounded-lg">
+      <h2 className="text-orange-500 font-bold text-4xl m-10">{getChangeTitle(language)}</h2>
 
-      <form onSubmit={(e) => handleTodo(e)}>
-        <input type="text" value={title} onChange={(e) => handleChange(e)} placeholder="New To Do..." />
-        <button type="submit">{getChangeButton(language)}</button>
+      <form className=" w-[70%] flex justify-between " onSubmit={(e) => handleTodo(e)}>
+        <input
+          className="outline-none p-2 w-[87%] rounded-lg"
+          type="text"
+          value={title}
+          onChange={(e) => handleChange(e)}
+          placeholder={getChangeTodo(language)}
+        />
+        <button className="text-white font-semibold rounded-lg bg-orange-500 w-[10%] " type="submit">
+          {getChangeButton(language)}
+        </button>
       </form>
 
       <Todo todos={todos} />
 
-      <select value={language} onChange={handleLanguageChange}>
+      <select
+        className="outline-none absolute top-2 left-5 rounded-lg text-sm w-[10%] text-center bg-orange-500 p-1 text-white font-semibold"
+        value={language}
+        onChange={handleLanguageChange}
+      >
         <option value="en">English</option>
         <option value="tr">Turkish</option>
       </select>
@@ -51,6 +63,3 @@ const Home = () => {
 };
 
 export default Home;
-/*
-      <AddTodo handleChange={handleChange} handleTodo={handleTodo} title={title} />
- */

@@ -6,7 +6,7 @@ import TodoItem from "./screens/TodoItem";
 
 function App() {
   return (
-    <div className="App">
+    <div className="flex justify-center items-center w-full">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
