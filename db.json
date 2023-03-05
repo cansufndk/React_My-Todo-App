@@ -1,29 +1,8 @@
 {
   "todos": [
     {
-      "title": "todo-5",
-      "todo": false,
-      "inProgress": true,
-      "done": false,
-      "id": 9
-    },
-    {
-      "id": "d8a3a485-2312-4284-b475-fb0e807c45a6",
-      "title": "ntodo-1",
-      "todo": true,
-      "inProgress": false,
-      "done": false
-    },
-    {
-      "id": "55f78a07-bd11-4911-a11f-8cc14d4c71d0",
-      "title": "mkmk",
-      "todo": true,
-      "inProgress": false,
-      "done": false
-    },
-    {
-      "id": "26e46a31-14cc-4d35-9f86-b165ebfb2520",
-      "title": "new",
+      "id": "6758d337-ca5d-4ab4-8566-70bf6c0f7fed",
+      "title": "new todo-2",
       "todo": true,
       "inProgress": false,
       "done": false

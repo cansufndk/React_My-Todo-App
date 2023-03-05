@@ -1,16 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getChangeButton, getChangeTitle, getChangeTodo } from "../../Language";
-import { getTodoList, addTodo, langChange } from "../../redux/actions";
+import { getTodoList, addTodo, langChange, updateTodo } from "../../redux/actions";
 import Todo from "../Todo";
 import { v4 as uuidv4 } from "uuid";
+import { useParams } from "react-router-dom";
 
 const Home = () => {
-  const todos = useSelector((state) => state.App.todos);
   const language = useSelector((state) => state.App.lang);
+  const todos = useSelector((state) => state.App.todos);
 
   const [title, setTitle] = useState("");
   const dispatch = useDispatch();
+  //const { id } = useParams();
 
   const handleChange = (e) => {
     setTitle(e.target.value);
@@ -28,8 +30,7 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(getTodoList());
-    console.log(todos);
-  }, [dispatch]);
+  }, [dispatch]); //todos
 
   return (
     <div className=" w-[75%] relative flex justify-center items-center flex-col p-2 bg-orange-200 rounded-lg">
@@ -62,4 +63,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default memo(Home);

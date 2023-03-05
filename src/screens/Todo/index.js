@@ -1,9 +1,9 @@
-import React, { memo } from "react";
+import React, { memo, useEffect } from "react";
+import { useSelector } from "react-redux";
 import TodoItem from "../TodoItem";
 
 const Todo = ({ todos }) => {
   console.log("todo render");
-  console.log(todos, "Todo todos");
 
   return (
     <div className="mb-10 w-[70%] flex flex-col items-center justiy-center">
