@@ -1,9 +1,7 @@
-import React, { memo, useEffect, useState } from "react";
+import React, { memo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getChangeDelete } from "../../Language";
 import { updateTodo, deleteTodo, getUpdateTodos } from "../../redux/actions";
-import { AiOutlineCheckCircle } from "react-icons/ai";
-import { useParams } from "react-router-dom";
 
 const TodoItem = ({ item }) => {
   const dispatch = useDispatch();
