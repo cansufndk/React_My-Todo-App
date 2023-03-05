@@ -1,10 +1,9 @@
 import React, { memo, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getChangeButton, getChangeTitle, getChangeTodo } from "../../Language";
-import { getTodoList, addTodo, langChange, updateTodo } from "../../redux/actions";
+import { getTodoList, addTodo, langChange } from "../../redux/actions";
 import Todo from "../Todo";
 import { v4 as uuidv4 } from "uuid";
-import { useParams } from "react-router-dom";
 
 const Home = () => {
   const language = useSelector((state) => state.App.lang);
@@ -12,7 +11,6 @@ const Home = () => {
 
   const [title, setTitle] = useState("");
   const dispatch = useDispatch();
-  //const { id } = useParams();
 
   const handleChange = (e) => {
     setTitle(e.target.value);

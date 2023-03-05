@@ -31,16 +31,18 @@ export const addTodo =
 export const updateTodo =
   ({ todo, inProgress, done, id, title }) =>
   async (dispatch) => {
-    console.log({ todo, inProgress, done, id, title });
+    console.log("update", { todo, inProgress, done, id, title });
+    //id, title,       id,title bunlar bodynişn içindeki
+
     try {
       const response = await fetch(`http://localhost:3000/todos/${id}`, {
         method: "PUT",
         body: JSON.stringify({
-          id,
-          title,
           todo,
           inProgress,
           done,
+          id,
+          title,
         }),
         headers: {
           "Content-type": "application/json; charset=UTF-8",
@@ -80,7 +82,6 @@ export const getTodoList = (payload) => async (dispatch) => {
   try {
     const response = await fetch("http://localhost:3000/todos");
     const data = await response.json();
-    //console.log(data);
     dispatch({
       type: constant.GET_TODOS,
       payload: data,
@@ -94,3 +95,11 @@ export const langChange = (payload) => ({
   type: constant.LANG_CHANGE,
   payload,
 });
+
+export const detailsTodo = (id) => async (dispatch) => {
+  const response = await fetch(`http://localhost:3000/todos/${id}`).then((res) => res.json());
+  dispatch({
+    type: constant.DETAILS_TODO,
+    payload: response,
+  });
+};

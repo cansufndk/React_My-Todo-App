@@ -1,11 +1,11 @@
 {
   "todos": [
     {
-      "id": "6758d337-ca5d-4ab4-8566-70bf6c0f7fed",
-      "title": "new todo-2",
-      "todo": true,
+      "todo": false,
       "inProgress": false,
-      "done": false
+      "done": true,
+      "id": "04368968-ac86-4f16-a38d-ecb08aed16f6",
+      "title": "new Todo"
     }
   ]
 }

@@ -3,6 +3,7 @@ import * as constant from "../constant";
 const INITIAL_STATE = {
   todos: [],
   lang: "tr",
+  todo: {},
 };
 
 const App = (state = INITIAL_STATE, actions) => {
@@ -23,6 +24,12 @@ const App = (state = INITIAL_STATE, actions) => {
       return {
         ...state,
         lang: actions.payload,
+      };
+
+    case constant.DETAILS_TODO:
+      return {
+        ...state,
+        todo: actions.payload,
       };
 
     default:

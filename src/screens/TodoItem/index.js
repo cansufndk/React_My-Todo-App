@@ -1,36 +1,37 @@
-import React, { memo, useEffect } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
 import { getChangeDelete } from "../../Language";
-import { updateTodo, deleteTodo } from "../../redux/actions";
+import { updateTodo, deleteTodo, getUpdateTodos } from "../../redux/actions";
+import { AiOutlineCheckCircle } from "react-icons/ai";
+import { useParams } from "react-router-dom";
 
 const TodoItem = ({ item }) => {
-  const { id } = useParams();
   const dispatch = useDispatch();
   const language = useSelector((state) => state.App.lang);
-  console.log("todoıtem render");
+  const [color, setColor] = useState(false);
 
-  const check = async (e) => {
-    dispatch(updateTodo({ todo: !!e.target.value, inProgress: false, done: false, id: id, title: item.title }));
+  const todo = async (e) => {
+    dispatch(updateTodo({ todo: !!e.target.value, inProgress: false, done: false, id: item.id, title: item.title }));
   };
 
-  const checkTwo = async (e) => {
+  const inProgres = async (e) => {
     dispatch(updateTodo({ todo: false, inProgress: !!e.target.value, done: false, id: item.id, title: item.title }));
   };
 
-  const checkThree = async (e) => {
+  const done = async (e) => {
     dispatch(updateTodo({ todo: false, inProgress: false, done: !!e.target.value, id: item.id, title: item.title }));
+    setColor(!color);
   };
 
-  useEffect(() => {}, []);
-
   return (
-    <div className=" flex flex-row justify-between items-center w-full my-3 relative border-b border-orange-900 ">
-      <p className="font-semibold text-lg text-orange-700 ">{item.title}</p>
+    <div className="p-2 flex flex-row justify-between items-center w-full my-3 relative border-b border-orange-900">
+      <p className={`font-semibold text-lg text-${color ? "red" : "orange"}-700`} onClick={() => (window.location = `todoitem/${item.id}`)}>
+        {item.title}
+      </p>
       <div className="absolute top-[20%] left-[40%]">
-        <input className="w-10 bg-orange-500 " value={item.todo} checked={!!item.todo} type={"checkbox"} onChange={check} />
-        <input className="w-10 " value={item.inProgress} checked={!!item.inProgress} type={"checkbox"} onChange={checkTwo} />
-        <input className="w-10 " value={item.done} checked={!!item.done} type={"checkbox"} onChange={checkThree} />
+        <input className="w-10 bg-orange-500 " id="todo" value={item.todo} checked={!!item.todo} type="checkbox" onChange={todo} />
+        <input className="w-10 " value={item.inProgress} checked={!!item.inProgress} type="checkbox" onChange={inProgres} />
+        <input className="w-10 " value={item.done} checked={!!item.done} type="checkbox" onChange={done} />
       </div>
       <button className="text-white p-1 font-semibold rounded-lg bg-orange-800 w-[20%] " onClick={() => dispatch(deleteTodo(item.id))}>
         {getChangeDelete(language)}
@@ -40,3 +41,11 @@ const TodoItem = ({ item }) => {
 };
 
 export default memo(TodoItem);
+/*
+          className="outline-none absolute top-2 left-5 rounded-lg text-sm w-[10%] text-center bg-orange-500 p-1 text-white font-semibold"
+
+
+        <label htmlFor="todo" value={item.todo}>
+          {item.todo}
+        </label>
+*/
